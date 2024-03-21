@@ -7,17 +7,22 @@ const AddTaskModal = ({isOpen,setIsOpen}) => {
     const {
       register,
       handleSubmit,
-     
+        reset,
       formState: { errors },
     } = useForm();
 
-    const onSubmit = (data) => {
-        console.log(data);
+  
+
+    const onCancel = () => {
+        reset();
+        setIsOpen(false);
     }
-
-
+      const onSubmit = (data) => {
+        console.log(data);
+        onCancel()
+      };
     return (
-      <Modal isOpen={true} setIsOpen={setIsOpen} title="Add Task">
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen} title="Add Task">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-3">
             <div className="flex flex-col gap-1">
@@ -61,18 +66,25 @@ const AddTaskModal = ({isOpen,setIsOpen}) => {
                 <option value="amiona">tmiona</option>
               </select>
             </div>
-          
+
             <div className="flex flex-col gap-1">
               <label htmlFor="description">Priority</label>
               <select className="rounded-lg w-full" {...register("priority")}>
                 <option value="low">low</option>
                 <option value="medium">medium</option>
                 <option value="high">high</option>
-                
               </select>
             </div>
           </div>
-          <button type="submit">Submit</button>
+
+          <div className="flex  gap-1 mt-5 justify-end">
+            <button onClick={onCancel} type="button" className="btn btn-danger">
+              Cancel
+            </button>
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
+          </div>
         </form>
       </Modal>
     );
