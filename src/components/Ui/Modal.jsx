@@ -42,7 +42,7 @@ export default function Modal({ isOpen, setIsOpen,title,children}) {
                   >
                     {title}
                   </Dialog.Title>
-                  <div className="mt-2">{children}</div>
+                  <div className="mt-7">{children}</div>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
