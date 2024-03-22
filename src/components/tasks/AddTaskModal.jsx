@@ -62,11 +62,11 @@ const AddTaskModal = ({isOpen,setIsOpen}) => {
                 className="rounded-lg w-full"
                 {...register("assign")}
               >
-                <option value="ami">ami</option>
-                <option value="tmi">tmi</option>
-                <option value="amiami">tmitmi</option>
-                <option value="tmiamiamitmi">tmiamiamitmi</option>
-                <option value="amiona">tmiona</option>
+                <option value="Mir Hossain">Mir Hossain</option>
+                <option value="Sawal">Sawal</option>
+                <option value="Nahid">Nahid</option>
+                <option value="Guha">Guha</option>
+                
               </select>
             </div>
 
