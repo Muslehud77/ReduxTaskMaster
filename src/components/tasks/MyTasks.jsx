@@ -4,20 +4,22 @@ import {
 } from '@heroicons/react/24/outline';
 import { useDispatch, useSelector } from 'react-redux';
 import Modal from '../Ui/Modal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TaskDetailsModal from './TaskDetailsModal';
-import { updateStatus } from '../../Redux/features/tasks/tasksSlice';
+import { updateStatus, configUserTasks } from '../../Redux/features/tasks/tasksSlice';
 
 
 
 const MyTasks = () => {
  const dispatch = useDispatch()
   const [isOpen,setIsOpen] = useState(false)
+  
   const [taskModal,setTaskModal] = useState(null)
-  const {tasks} = useSelector(state=>state.tasksSlice)
-  const user = useSelector(state=>state.userSlice)
+  const { userTasks ,tasks } = useSelector((state) => state.tasksSlice);
+  const {name} = useSelector(state=>state.userSlice)
 
-  const userTasks = tasks.filter(task=> task.assign === user.name)
+
+  // const userTasks = tasks.filter(task=> task.assign === name)
 
  
   const setTaskToShow = (id)=>{
@@ -25,6 +27,9 @@ const MyTasks = () => {
     setIsOpen(true)
   }
 
+  useEffect(() => {
+    dispatch(configUserTasks(name));
+  }, [name, tasks,dispatch]);
 
 
 
