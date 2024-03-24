@@ -6,9 +6,19 @@ const TaskCard = ({task}) => {
 
   const dispatch = useDispatch()
 
-  const update = (id)=>{
-    dispatch(updateStatus(id));
+  const update = (t)=>{
+    let status;
+     if (t.status === "pending") {
+      status = 'running'
+     }else if (t.status === "running"){
+      status = 'done'
+     }else if(t.status === 'done'){
+      status = 'archive'
+     } 
+     dispatch(updateStatus({ id: t.id, status }));
   }
+
+  
 
   return (
     <div className="bg-secondary/10 rounded-md p-5">
@@ -30,7 +40,7 @@ const TaskCard = ({task}) => {
             <TrashIcon className="h-5 w-5 text-red-500" />
           </button>
           <button
-           onClick={()=>update(task?.id)}
+           onClick={()=>update(task)}
             title="In progress"
           >
             <ArrowRightIcon className="h-5 w-5 text-primary" />

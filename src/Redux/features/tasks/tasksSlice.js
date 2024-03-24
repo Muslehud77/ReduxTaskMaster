@@ -13,6 +13,7 @@ const initialState = {
       priority: "high",
     },
   ],
+  userTasks : []
 };
 
 const tasksSlice = createSlice({
@@ -34,15 +35,13 @@ const tasksSlice = createSlice({
       state.tasks = filtered
     },
     updateStatus: (state, { payload }) => {
-      const target = state.tasks.find((task) => payload === task.id);
-      if (target.status === "pending") {
-        target.status = "running";
-      } else if (target.status === "running") {
-        target.status = "done";
-      } else {
-        target.status = "archive";
-      }
+      const target = state.tasks.find((task) => payload.id === task.id);
+      target.status = payload.status;
+     
     },
+    userTasks : (state,{payload})=>{
+      
+    }
   },
 });
 
